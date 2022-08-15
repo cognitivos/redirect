@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Distributor</title>
+<style>
+    body {
+        width: 35em;
+        margin: 0 auto;
+        font-family: Tahoma, Verdana, Arial, sans-serif;
+    }
+</style>
+</head>
+<body>
+<h1 id="dispositivo"></h1>
+
+</body>
+<script type="text/javascript">
+	function getMobileOperatingSystem() {
+    var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+    if (/windows phone/i.test(userAgent)) {
+        return "windows_phone";
+    }
+
+    if (/android/i.test(userAgent)) {
+        return "android";
+    }
+
+    if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+        return "ios";
+    }
+
+    return "unknown";
+}
+
+/*
+    "depending on the device, it should redirect to the corresponding link."
+*/
+
+var dispositivo = getMobileOperatingSystem();
+if(dispositivo == "ios"){
+	document.getElementById("dispositivo").innerHTML="dispositivo: iOS - App Store";
+    window.location.href = "https://apps.apple.com/br/app/cim-bank/id1575001333";
+}else if(dispositivo == "android"){
+	document.getElementById("dispositivo").innerHTML="dispositivo: Android - Play Store";
+    window.location.href = "https://play.google.com/store/apps/details?id=com.app.cimbank27";
+}else if(dispositivo == "windows_phone"){
+    document.getElementById("dispositivo").innerHTML="dispositivo: Windows Phone - Marketplace (dispositivo não suportado)";
+}else{
+    document.getElementById("dispositivo").innerHTML="dispositivo: Desconhecido";
+}
+</script>
+</html>
